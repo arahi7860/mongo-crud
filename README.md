@@ -59,7 +59,7 @@ Use `insert()` to add documents to a collection.
 
 ### Insert A Restaurant
 
-``` json
+```bash
 > db.restaurants.insert({
   "name": "Haikan",
   "address" : {
@@ -102,7 +102,7 @@ That should return a document with the following fields:
 * `address`
 * `cuisine`
 
-**Q**. What is surprising/unexpected?
+**Q**: What is surprising/unexpected?
 
 * Where did `restaurants` come from?
 * What is `_id`?
@@ -150,15 +150,15 @@ Let's recreate the steps together:
 <details>
   <summary>How can we tell which database we are connected to currently?</summary>
 
-  > `db`
+  `db`
+
 </details>
 
 1. Create DB
 1. Use the appropriate DB
 1. Insert multiple restaurants
 
-``` json
-db.restaurants.remove({});
+```bash
 db.restaurants.insert([
   {
     "name": "Haikan",
@@ -219,7 +219,7 @@ Breaking down the anatomy of a typical query with Mongo:
     db + collection + operation + modification = results
 
 In order to find all restaurants:
-```js
+```bash
 > db.restaurants.find()
 ```
 
@@ -232,7 +232,7 @@ In order to find all restaurants:
 We can add conditions to our query to target documents based on matching
 key-value pairs:
 
-```js
+```bash
 > db.restaurants.find({name: "Haikan"});
 > db.restaurants.find({"address.zipcode": 20001});
 ```
@@ -251,13 +251,13 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 )
 ```
 
-> **Note**: the first key value pair is the condition on which to find the
-> document you'd like to update, the second is what values you'd like to set,
-> and third is any additional options
+The first key value pair is the condition on which to find the
+document you'd like to update, the second is what values you'd like to set,
+and third is any additional options.
 
 This what a sample update might look like:
 
-```js
+```bash
 > db.restaurants.update(
   {"name": "Haikan"},
   { $set: { state: "DC" }}
@@ -267,7 +267,7 @@ This what a sample update might look like:
 In order to update multiple documents at a time, make sure to pass
 the `multi` option as true, like so:
 
-```js
+```bash
 db.restaurants.update(
   {},
   {
@@ -279,14 +279,22 @@ db.restaurants.update(
 
 Verify:
 
-```js
+```bash
 > db.restaurants.find().pretty()
 ```
 
 ### CLI: Remove Records
 
+Remove a restaurant with the same architecture:
+
 ```
 > db.restaurants.remove({ conditions })
+```
+
+This what a sample remove might look like:
+
+```bash
+> db.restaurants.remove({"name": "Haikan"})
 ```
 
 ### You Do: Update the restaurant_db (30 min / 1:15)
@@ -298,12 +306,8 @@ Take time to think about and execute the appropriate commands so that you:
 * Update all restaurants to have a new key-value pair `{state: 'DC'}`
 * Add a property of `rating` to at least 2 documents and give it a numerical value between 1-5
 * Change the street `address` of a specific restaurant
-* Add nested sub-documents to each restaurant to that it has many `reviews`
-* Store important information about each `review`, such as the rating, name of the reviewer and their comment about the restuarant.
-
-### CLI: Add a nested object
-
-> We already did this! (The address 'object' / 'subdocument')
+* Add nested sub-documents to each restaurant to that it has many `reviews` (how would you list several reviews here?)
+* Store important information about each `review`, such as the name of the reviewer and their comment about the restuarant.
 
 ## Additional Resources
 

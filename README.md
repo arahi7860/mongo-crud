@@ -21,7 +21,7 @@ By the end of this, developers should be able to:
 
 CRUD is a term that you'll be hearing a lot throughout the remainder of the cohort. Today, we'll learn how to implement CRUD on our database through the CLI in the Mongo shell. 
 
-## We Do: Creat a Database with the CLI (5 min / 0:10)
+## We Do: Create a Database with the CLI (5 min / 0:10)
 
 In your terminal, run the command `mongod` to start the MongoDB server. In a separate tab, run the command `mongo` to open the Mongo shell.
 
@@ -29,32 +29,27 @@ In the shell, let's create our first database, one which we will be using
 to store information about restaurants.
 
 In order to create/connect to a new database, we have to tell Mongo to `use`
-a specific database that we want to work with:
+a specific database that we want to work with. `use` will create the database it received as an argument if not already initialized and then connect to it.
 
 ```
 > use restaurant_db
 ```
-> **Note**: `use` will create the database it received as an argument if not
-> already initialized and then connect to it
 
-Verify:
+Verify. The `db` variable is provided by Mongo and will point to the database you're currently connected to.
 
 ```
 > db
 restaurant_db
 ```
 
-> **Note**: the `db` variable is provided by Mongo and will point to the
-> database you're currently connected to.
-
-Common gotcha - what happens when we run:
+Common gotcha: what happens when we run:
 
 ```
 $ show dbs
 ```
 
-> **Note**: we don't see `restaurant_db` listed. It isn't until we add
-> a document to our database that our db will show up in `show dbs`!
+We don't see `restaurant_db` listed. It isn't until we add
+a document to our database that our db will show up in `show dbs`!
 
 ## CLI: Create a Record (10 min / 0:15)
 

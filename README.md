@@ -2,7 +2,7 @@
 
 # MongoDB CRUD
 
-CRUD intro here
+Think about databases and communicating with them, what are some ways that we can interact with our data? So far, we have mainly worked with data through third-party APIs, where we can get the data we need through a `fetch()` request and render that data on the page. However, we haven't been able to alter any of the data ourselves. That's where **CRUD** comes in.
 
 ## Prerequisites
 
@@ -14,6 +14,12 @@ By the end of this, developers should be able to:
 
 * Perform CRUD on documents in a collection using the Mongo CLI
 * Build a simple node CLI to query a MongoDB collection
+
+## CRUD
+
+**CRUD** stands for **Create**, **Read**, **Update** and **Delete**. There are the four ways that we as developers can interact with our database. So far, we have only been able to read data. But what if we (or our users) wanted to make some changes to the data in the database? For example, if someone wanted to reset their password or change their username on an application they use. Or delete their account altogether! 
+
+CRUD is a term that you'll be hearing a lot throughout the remainder of the cohort. Today, we'll learn how to implement CRUD on our database through the CLI in the Mongo shell. 
 
 ## We Do: Creat a Database with the CLI (5 min / 0:10)
 

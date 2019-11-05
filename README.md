@@ -2,20 +2,11 @@
 
 # MongoDB CRUD
 
-Use this template to structure your READMEs for talks. Remove text from this
-section, or use it to frame the talk you are giving. Good framing answers the
-question "Why am I learning this?".
-
-Be sure to include a recent [`LICENSE`](LICENSE) and Markdown linter
-configuration ([`.remarkrc`](.remarkrc)). Also, include an appropriate
-`.gitignore`; these are usually found in specific technology templates, for
-example [js-template](https://www.github.com/ga-wdi-boston/js-template).
-
+CRUD intro here
 
 ## Prerequisites
 
 - Intro to MongoDB
-
 
 ## Objectives
 
@@ -23,7 +14,6 @@ By the end of this, developers should be able to:
 
 * Perform CRUD on documents in a collection using the Mongo CLI
 * Build a simple node CLI to query a MongoDB collection
-
 
 ## We Do: Creat a Database with the CLI (5 min / 0:10)
 
@@ -59,7 +49,6 @@ $ show dbs
 
 > **Note**: we don't see `restaurant_db` listed. It isn't until we add
 > a document to our database that our db will show up in `show dbs`!
-
 
 ## CLI: Create a Record (10 min / 0:15)
 
@@ -119,7 +108,6 @@ That should return a document with the following fields:
 
 > Note: Documentation on [ObjectId](https://docs.mongodb.org/manual/reference/object-id/)
 
-
 ## Review `insert`
 
 ```js
@@ -137,7 +125,6 @@ New Collection:
 
 * If you attempt to add documents to a collection that does not exist, MongoDB will create the collection for you.
 
-
 ## Dropping a Database
 
 ```bash
@@ -146,7 +133,6 @@ New Collection:
 ```
 
 Drops the **current** database. Go ahead and drop your database now.
-
 
 ## You Do: Add More Documents (10 min / 0:25)
 
@@ -219,13 +205,11 @@ db.restaurants.insert([
 
 > Note that there's no `cuisine` key in the last record. Does that matter?
 
-
 ## [Primary Key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key) (5 min / 0:30)
 
 * A record’s unique immutable identifier generated upon creation of a new instance.
 * In relational databases, the primary key is usually an *id* field, the value of which is typically an *Integer*.
 * In MongoDB, the *_id* field is usually a *[BSON](http://docs.mongodb.org/manual/reference/glossary/#term-bson) [ObjectId](http://docs.mongodb.org/manual/reference/glossary/#term-objectid)*.
-
 
 ## CLI: QUERY for Records (15 min / 0:45)
 

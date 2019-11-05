@@ -11,13 +11,11 @@ configuration ([`.remarkrc`](.remarkrc)). Also, include an appropriate
 `.gitignore`; these are usually found in specific technology templates, for
 example [js-template](https://www.github.com/ga-wdi-boston/js-template).
 
+
 ## Prerequisites
 
-- Topics with which developers should be familiar with.
-- Prerequisites are "just-in-time", so if I have a prerequisite that mentions
-  Sass, I would **not** need to include CSS as a prerequisite.
-- [Links to previous materials](https://www.github.com/ga-wdi-boston/example)
-  are often useful.
+- Intro to MongoDB
+
 
 ## Objectives
 
@@ -26,9 +24,12 @@ By the end of this, developers should be able to:
 * Perform CRUD on documents in a collection using the Mongo CLI
 * Build a simple node CLI to query a MongoDB collection
 
-### CLI: Creating a Database
 
-In the Mongo shell, let's create our first database, one which we will be using
+## We Do: Creat a Database with the CLI (5 min / 0:10)
+
+In your terminal, run the command `mongod` to start the MongoDB server. In a separate tab, run the command `mongo` to open the Mongo shell.
+
+In the shell, let's create our first database, one which we will be using
 to store information about restaurants.
 
 In order to create/connect to a new database, we have to tell Mongo to `use`
@@ -59,7 +60,8 @@ $ show dbs
 > **Note**: we don't see `restaurant_db` listed. It isn't until we add
 > a document to our database that our db will show up in `show dbs`!
 
-## CLI: Create a record (15 min / 1:20)
+
+## CLI: Create a Record (10 min / 0:15)
 
 ### Insert
 
@@ -78,25 +80,23 @@ Use `insert()` to add documents to a collection.
 })
 ```
 
-**Important to note**:
+Let's break this down:
 
-> The `db` is the database we’re connected to. In this case, `restaurant_db`.
-> `.restaurants` is then referring to a collection in our `restaurant_db`. We
-> use the `.insert()` to add a document to the `restaurants` collection (the
-> document inside the parentheses).
+1. The `db` is the database we’re connected to. In this case, `restaurant_db`.
+1. `.restaurants` is then referring to a collection in our `restaurant_db`.
+1. We use the `.insert()` to add a document to the `restaurants` collection (the document inside the parentheses).
 
 > `restaurants` doesn't exist at first, but that's okay. It gets created
 > automatically the first time we add a document to it!
 
-### Verify the insert
+### Verify the Insert
 
 ```bash
 > show collections
-
 restaurants
 ```
 
-`restaurants` was saved as a collection. A collection is really just a group of
+`restaurants` is now saved as a collection. A collection is really just a group of
 documents. If you want to explore all the things you can do with a collection,
 type `db.collection_name.help()`, or in this case: `db.restaurants.help()`
 
@@ -119,6 +119,7 @@ That should return a document with the following fields:
 
 > Note: Documentation on [ObjectId](https://docs.mongodb.org/manual/reference/object-id/)
 
+
 ## Review `insert`
 
 ```js
@@ -132,9 +133,10 @@ New Record:
 
 * If the document passed to the `insert()` method does not contain the `_id` field the Mongo shell automatically adds the field to the document and sets the field’s value to a generated `ObjectId`.
 
-New collection:
+New Collection:
 
 * If you attempt to add documents to a collection that does not exist, MongoDB will create the collection for you.
+
 
 ## Dropping a Database
 
@@ -145,7 +147,8 @@ New collection:
 
 Drops the **current** database. Go ahead and drop your database now.
 
-### Exercise (5 minutes): Add a few more restaurants.
+
+## You Do: Add More Documents (10 min / 0:25)
 
 Using the Mongo Shell CLI, add at least 4 new restaurant documents to your
 `restaurants` collection.
@@ -164,8 +167,8 @@ Let's recreate the steps together:
 </details>
 
 1. Create DB
-2. Use the appropriate DB
-3. Insert multiple restaurants
+1. Use the appropriate DB
+1. Insert multiple restaurants
 
 ``` json
 db.restaurants.remove({});
@@ -216,15 +219,15 @@ db.restaurants.insert([
 
 > Note that there's no `cuisine` key in the last record. Does that matter?
 
-## [Primary key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key) (5 min / 1:25)
+
+## [Primary Key](http://docs.mongodb.org/manual/reference/glossary/#term-primary-key) (5 min / 0:30)
 
 * A record’s unique immutable identifier generated upon creation of a new instance.
 * In relational databases, the primary key is usually an *id* field, the value of which is typically an *Integer*.
 * In MongoDB, the *_id* field is usually a *[BSON](http://docs.mongodb.org/manual/reference/glossary/#term-bson) [ObjectId](http://docs.mongodb.org/manual/reference/glossary/#term-objectid)*.
 
-## Break (10 min / 1:35)
 
-## CLI: QUERY for Records (25 min / 2:00)
+## CLI: QUERY for Records (15 min / 0:45)
 
 Breaking down the anatomy of a typical query with Mongo:
 
@@ -239,7 +242,7 @@ In order to find all restaurants:
 > chaining the `.pretty()` method to end of our query like so:
 > `db.restaurants.find().pretty()`
 
-### Find by Conditions (like SQL's `where`)
+### Find by Conditions
 
 We can add conditions to our query to target documents based on matching
 key-value pairs:
@@ -249,7 +252,7 @@ key-value pairs:
 > db.restaurants.find({"address.zipcode": 20001});
 ```
 
-### CLI: Update a record(s)
+### CLI: Update a Record(s)
 
 http://docs.mongodb.org/manual/core/write-operations-introduction/
 
@@ -267,22 +270,7 @@ http://docs.mongodb.org/manual/core/write-operations-introduction/
 > document you'd like to update, the second is what values you'd like to set,
 > and third is any additional options
 
-### You do (15 min):
-
-> Write all these out in your code editor before you run them in the command line.
-
-Take time to think about and execute the appropriate commands so that you:
-
-* Update all restaurants to have a new key-value pair `{state: 'DC'}`
-* Add a property of `rating` to at least 2 documents and give it a numerical value between 1-5
-* Change the street `address` of a specific restaurant
-
-**Bonus:**
-
-* Add nested sub-documents to each restaurant to that it has many `reviews`
-* Store important information about each `review`
-
-> **Note** this what a sample update might look like:
+This what a sample update might look like:
 
 ```js
 > db.restaurants.update(
@@ -291,8 +279,8 @@ Take time to think about and execute the appropriate commands so that you:
 )
 ```
 
-> **Note**: In order to update multiple documents at a time, make sure to pass
-> the `multi` option as true, like so:
+In order to update multiple documents at a time, make sure to pass
+the `multi` option as true, like so:
 
 ```js
 db.restaurants.update(
@@ -310,11 +298,23 @@ Verify:
 > db.restaurants.find().pretty()
 ```
 
-### CLI: Remove records
+### CLI: Remove Records
 
 ```
 > db.restaurants.remove({ conditions })
 ```
+
+### You Do: Update the restaurant_db (30 min / 1:15)
+
+> Write all these out in your code editor before you run them in the command line.
+
+Take time to think about and execute the appropriate commands so that you:
+
+* Update all restaurants to have a new key-value pair `{state: 'DC'}`
+* Add a property of `rating` to at least 2 documents and give it a numerical value between 1-5
+* Change the street `address` of a specific restaurant
+* Add nested sub-documents to each restaurant to that it has many `reviews`
+* Store important information about each `review`, such as the rating, name of the reviewer and their comment about the restuarant.
 
 ### CLI: Add a nested object
 

@@ -312,7 +312,7 @@ Take time to think about and execute the appropriate commands so that you:
 * Update all restaurants to have a new key-value pair `{state: 'DC'}`
 * Add a property of `rating` to at least 2 documents and give it a numerical value between 1-5
 * Change the street `address` of a specific restaurant
-* Add nested sub-documents to each restaurant to that it has many `reviews` (how would you list several reviews here?)
+* Add nested sub-documents to each restaurant so that it has many `reviews` (how would you list several reviews here?)
 * Store important information about each `review`, such as the name of the reviewer and their comment about the restuarant.
 
 ## Additional Resources

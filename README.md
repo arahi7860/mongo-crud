@@ -55,12 +55,14 @@ a document to our database that our db will show up in `show dbs`!
 
 ### Insert
 
-Use `insert()` to add documents to a collection.
+Use `insertOne()` to add documents to a collection. There are other ways to
+insert a document (such as [`insertMany()`](https://www.mongodb.com/docs/manual/tutorial/insert-documents/), [`bulkWrite()`](https://www.mongodb.com/docs/manual/core/bulk-write-operations/), or the derpicated
+`insert()`).
 
 ### Insert A Restaurant
 
 ```bash
-> db.restaurants.insert({
+> db.restaurants.insertOne({
   "name": "Haikan",
   "address" : {
       "street" : "805 V Street NW",
@@ -74,7 +76,7 @@ Let's break this down:
 
 1. The `db` is the database we’re connected to. In this case, `restaurant_db`.
 1. `.restaurants` is then referring to a collection in our `restaurant_db`.
-1. We use the `.insert()` to add a document to the `restaurants` collection (the document inside the parentheses).
+1. We use the `.insertOne()` to add a document to the `restaurants` collection (the document inside the parentheses).
 
 > `restaurants` doesn't exist at first, but that's okay. It gets created
 > automatically the first time we add a document to it!
@@ -112,15 +114,15 @@ That should return a document with the following fields:
 ## Review `insert`
 
 ```js
-// insert
-db.your_collection_name.insert({ data as json })
+// insertOne
+db.your_collection_name.insertOne({ data as json })
 // find
 db.your_collection_name.find()
 ```
 
 New Record:
 
-* If the document passed to the `insert()` method does not contain the `_id` field the Mongo shell automatically adds the field to the document and sets the field’s value to a generated `ObjectId`.
+* If the document passed to the `insertOne()` method does not contain the `_id` field the Mongo shell automatically adds the field to the document and sets the field’s value to a generated `ObjectId`.
 
 New Collection:
 
@@ -159,7 +161,7 @@ Let's recreate the steps together:
 1. Insert multiple restaurants
 
 ```bash
-db.restaurants.insert([
+db.restaurants.insertMany([
   {
     "name": "Haikan",
     "address" : {
@@ -285,16 +287,20 @@ Verify:
 
 ### CLI: Remove Records
 
-Remove a restaurant with the same architecture:
+Remove a restaurant with the same architecture. The `remove()` command is the
+depricated standard. Now it's best to use
+[`deleteOne()`](https://www.mongodb.com/docs/v5.3/reference/method/db.collection.deleteOne),
+[`deleteMany()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteMany/),
+[`findOneAndDelete()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.findOneAndDelete/), or `bulkWrite()`).:
 
 ```
-> db.restaurants.remove({ conditions })
+> db.restaurants.deleteOne({ conditions })
 ```
 
 This what a sample remove might look like:
 
 ```bash
-> db.restaurants.remove({"name": "Haikan"})
+> db.restaurants.deleteOne({"name": "Haikan"})
 ```
 
 ### You Do: Update the restaurant_db (30 min / 1:15)
